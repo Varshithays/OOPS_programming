@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -65,17 +66,24 @@ class MyClass {
     }
 
     public static Hotel searchHotelByWifiOption(Hotel[] h, String inputwifi) {
-        Hotel[] matchingHotels = Arrays.stream(h)
+       /* Hotel[] matchingHotels = Arrays.stream(h)
                 .filter(hotel -> hotel.getWifiFacility().equalsIgnoreCase(inputwifi))
-                .toArray(Hotel[]::new);
+                .toArray(Hotel[]::new);*/
+        List<Hotel> matchingHotels = new ArrayList<>();
+
+        for(Hotel hotel:h){
+            if(hotel.getWifiFacility().equalsIgnoreCase(inputwifi)){
+                matchingHotels.add(hotel);
+            }
+        }
 
         // If less than 2 hotels match, return null
-        if (matchingHotels.length < 2) {
+        if (matchingHotels.size() < 2) {
             return null;
         }
 
         // Sort the matching hotels by totalBill in descending order
-        Arrays.sort(matchingHotels, (h1, h2) -> Double.compare(h2.getTotalBill(), h1.getTotalBill()));
+        matchingHotels.sort((h1, h2) -> Double.compare(h2.getTotalBill(), h1.getTotalBill()));
 
         // Return the hotel with the second-highest total bill
         return matchingHotels[1];
