@@ -31,7 +31,7 @@ class TravelAgency {
 
 
 }
-class OOPS5{
+public class OOPS5{
     public static void main(String[] args){
         Scanner in = new Scanner(System.in);
 

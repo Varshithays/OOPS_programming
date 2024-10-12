@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 import java.util.Scanner;
 
 class MyClass {
@@ -86,7 +86,7 @@ class MyClass {
         matchingHotels.sort((h1, h2) -> Double.compare(h2.getTotalBill(), h1.getTotalBill()));
 
         // Return the hotel with the second-highest total bill
-        return matchingHotels[1];
+        return matchingHotels.get(1);
 
 
     }
