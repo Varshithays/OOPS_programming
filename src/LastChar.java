@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class VowelFirst
+public class LastChar
 {
     public static void main(String[] args)
     {
@@ -10,15 +10,7 @@ public class VowelFirst
         int count=0;
         String words[] = str.split(" ");
         for(int i=0;i<words.length;i++){
-            char ch = words[i].charAt(0);
-           if(ch =='a'||ch=='e'||ch =='i'||ch == 'o'||ch == 'u'){
-               count++;
-           }
-        }
-        if(count==0){
-            System.out.println("no match");
-        }else{
-            System.out.println(count);
+            System.out.println(str.charAt(words.length));
         }
     }
 }

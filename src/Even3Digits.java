@@ -1,21 +1,22 @@
 import java.util.Scanner;
 
-public class EvenDigit {
+public class Even3Digits {
     public static void main(String[] args){
-        Scanner in = new Scanner(System.in);
-        int number = in.nextInt();
+        Scanner in  = new Scanner(System.in);
+        int n= in.nextInt();
         int count =0;
-        while(number!=0){
-            int d = number % 10;//12345 %10 = 5
+        while(n>0){
+            int d = n%10;
             if(d%2==0){
                 count++;
             }
-            number = number/10;
+            n=n/10;
         }
-        if(count>2) {
+        if(count >=3){
             System.out.println("TRUE");
         }else{
             System.out.println("FALSE");
         }
+
     }
 }

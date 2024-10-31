@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 class OOPS2{
@@ -18,10 +19,14 @@ class OOPS2{
         }
         int limit = in.nextInt();
         Inventory[] newInventory = replenish(inv,limit);
-        for(int i=0;i< newInventory.length;i++){
-            if(newInventory[i].getThreshold() >= 75){
+        for(int i=0;i< newInventory.length;i++)
+        {
+            if(newInventory[i].getThreshold() >= 75)
+            {
                 System.out.println(newInventory[i].getInventoryId()+"Critical Filling");
-            }else if(newInventory[i].getThreshold()<=74 && newInventory[i].getThreshold()>=50){
+            }
+            else if(newInventory[i].getThreshold()<=74 && newInventory[i].getThreshold()>=50)
+            {
                 System.out.println(newInventory[i].getInventoryId()+"Moderate Filling");
             }else{
                 System.out.println(newInventory[i].getInventoryId()+"Non-Critical Filling");
@@ -30,21 +35,15 @@ class OOPS2{
     }
 
     public static Inventory[] replenish(Inventory[] it,int limit){
-        int count = 0;
+        //int count = 0;
+        Inventory[] newInventory= new Inventory[0];
         for(int i=0;i<it.length;i++){
             if(it[i].getThreshold()<=limit){
-                count++;
+                newInventory= Arrays.copyOf(newInventory,newInventory.length+1);
+                newInventory[newInventory.length-1]=it[i];
             }
         }
-        int index=0;
-        Inventory[] newInventory= new Inventory[count];
 
-        for(int i=0;i<it.length;i++) {
-            if (it[i].getThreshold() <= limit) {
-                newInventory[index] = it[i];
-                index++;
-            }
-        }
         return newInventory;
     }
 }
