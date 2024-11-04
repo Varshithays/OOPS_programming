@@ -9,7 +9,7 @@ public class Armstrong
         String num = in.nextLine();
         int sum =0;
         for(int i=0;i<num.length();i++){
-            sum+=Math.pow(Integer.parseInt(String.valueOf(num.charAt(i))),3);
+            sum+=Math.pow(Integer.parseInt(String.valueOf(num.charAt(i))),num.length());
         }
         if(sum == Integer.parseInt(num))
         {
