@@ -1,7 +1,7 @@
 // Integer input
 import java.util.Scanner;
 
-public class ArmstrongCheck {
+public class Armstrong {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Input number: ");
@@ -26,7 +26,9 @@ public class ArmstrongCheck {
         }
     }
 }
-//String input
+/*
+String input
+
 import java.util.Scanner;
 public class ArmstrongCheck {
     public static void main(String[] args) {
@@ -83,3 +85,4 @@ public class Armstrong
         }
     }
 }
+ */
