@@ -160,3 +160,107 @@ class Faculty extends Person{
         this.salary=salary;
     }
 }
+/*import java.util.*;
+
+public class TwoClasses {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        List<Student> students = new ArrayList<>();
+
+        // Input Students
+        System.out.println("Enter details for 2 students:");
+        for (int i = 0; i < 2; i++) {
+            System.out.println("Enter first name:");
+            String firstName = in.nextLine();
+            System.out.println("Enter last name:");
+            String lastName = in.nextLine();
+            System.out.println("Enter age:");
+            int age = in.nextInt();
+            in.nextLine(); // Consume newline
+            System.out.println("Enter gender (M/F):");
+            char gender = in.next().charAt(0);
+            in.nextLine(); // Consume newline
+            System.out.println("Enter roll number:");
+            String rollNo = in.nextLine();
+            System.out.println("Enter course:");
+            String course = in.nextLine();
+            System.out.println("Enter semester:");
+            int semester = in.nextInt();
+            System.out.println("Enter GPA:");
+            double GPA = in.nextDouble();
+            in.nextLine(); // Consume newline
+
+            students.add(new Student(firstName, lastName, age, gender, rollNo, course, semester, GPA));
+        }
+
+        // Calculate Average GPA
+        double averageGPA = calculateAverageGPA(students);
+        System.out.println("Average GPA: " + averageGPA);
+
+        // Find Students by Course
+        System.out.println("Enter a course to find students:");
+        String inputCourse = in.nextLine();
+        List<Student> studentsInCourse = getStudentsByCourse(students, inputCourse);
+
+        if (!studentsInCourse.isEmpty()) {
+            System.out.println("Students in course " + inputCourse + ":");
+            for (Student s : studentsInCourse) {
+                System.out.println("Roll No: " + s.rollNo + ", GPA: " + s.GPA);
+            }
+        } else {
+            System.out.println("No students found for the course " + inputCourse);
+        }
+    }
+
+    // Calculate average GPA
+    public static double calculateAverageGPA(List<Student> students) {
+        double totalGPA = 0;
+        for (Student student : students) {
+            totalGPA += student.GPA;
+        }
+        return students.isEmpty() ? 0 : totalGPA / students.size();
+    }
+
+    // Get students by course
+    public static List<Student> getStudentsByCourse(List<Student> students, String course) {
+        List<Student> result = new ArrayList<>();
+        for (Student student : students) {
+            if (student.course.equalsIgnoreCase(course)) {
+                result.add(student);
+            }
+        }
+        return result;
+    }
+}
+
+// Person class
+class Person {
+    String firstName;
+    String lastName;
+    int age;
+    char gender;
+
+    public Person(String firstName, String lastName, int age, char gender) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.gender = gender;
+    }
+}
+
+// Student class
+class Student extends Person {
+    String rollNo;
+    String course;
+    int semester;
+    double GPA;
+
+    public Student(String firstName, String lastName, int age, char gender, String rollNo, String course, int semester, double GPA) {
+        super(firstName, lastName, age, gender);
+        this.rollNo = rollNo;
+        this.course = course;
+        this.semester = semester;
+        this.GPA = GPA;
+    }
+}
+*/
