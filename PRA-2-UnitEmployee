@@ -1,0 +1,217 @@
+/*QUESTION
+/*Create a class Unit with following:
+
+1.Attributes
+unitld: Integer
+unitName: String
+budget: Integer
+employees: List of employees for the unit.
+2.Getters and Setters Methods
+3.Parameterized constructor
+
+Create a class Employee with following:
+1.Attributes
+employeeld nteger
+employeeName: String
+salary:Integer
+2.Getters and Setters Methods.
+3.Parameterized constructor.
+
+Relationship
+Each Unit can have multiple Employees objects.
+Create a class Service with following methods
+
+1.Calculate TotalSalaryByEmployeeName:
+-This method will take a list of Unit objects and a employeeName as input.
+-This method calculates and Prints the total Salary by employeeName.
+-If no Employee is found the method should print a message "No Employee found with mentioned name." (Without quotes)
+-You need to throw an custom based exception in case of, if the salary of a employee is negative. The method should throw an exception called Salaryis NegativeException which includes a message "Invalid Salary: Salary cannot be negative." (without quotes).
+
+2.findUnitNamesOfEmployeeBySalary:
+
+-This method will take a list of Unit objects and integer parameter Salary.
+-Method should print the list of all the Unit Names who have employed employees where their employee salary is greater than the salary passed as a parameter. (refer The output)
+-If no match is found then method should print the message "No matching units found."(Without quotes)
+
+Create a class Tester
+1. Take inputs
+2. Create Object of Service class to call the methods.
+*/
+//PROGRAM SOLUTION
+package PRA;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Unit{
+    private int unitId;
+    private String unitName;
+    private int budget;
+    private ArrayList<Employee> employees;
+    public Unit(int unitId,String unitName,int budget,ArrayList<Employee> employees){
+    this.unitId=unitId;
+    this.unitName=unitName;
+    this.budget=budget;
+    this.employees=employees;
+    }
+    public int getUnitId(){
+        return  unitId;
+    }
+    public String getUnitName(){
+        return  unitName;
+    }
+    public  int getBudget(){
+        return budget;
+    }
+    public ArrayList<Employee> getEmployees(){
+        return employees;
+    }
+
+}
+class Employee{
+    private int employeeId;
+    private String employeeName;
+    private int salary;
+    public Employee(int employeeId,String employeeName,int salary){
+        this.employeeId=employeeId;
+        this.employeeName=employeeName;
+        this.salary=salary;
+    }
+    public int getEmployeeId(){
+        return employeeId;
+    }
+    public  String getEmployeeName(){
+        return employeeName;
+    }
+    public int getSalary(){
+        return salary;
+    }
+}
+class SalaryNegativeException extends Exception{
+    public SalaryNegativeException(String message){
+        super(message);
+    }
+}
+class Service{
+    public static int totalSalaryByEmpName(ArrayList<Unit> u,String inputname)throws SalaryNegativeException{
+        int total=0;
+        for(Unit i:u){
+            for(Employee j:i.getEmployees()){
+                if(j.getEmployeeName().equalsIgnoreCase(inputname)){
+                    if(j.getSalary()<0){
+                        throw new SalaryNegativeException("Invalid Salary: Salary cant be negative");
+                    }
+                    total+=j.getSalary();
+
+                }
+            }
+        }
+
+        return total;
+    }
+    public static ArrayList<String> findUnitNamesOfEmployeeBySalary(ArrayList<Unit> u,int inputsal){
+        ArrayList<String> temp= new ArrayList<>();
+        for(Unit i:u){
+            for(Employee j:i.getEmployees()){
+                if(j.getSalary()>inputsal){
+                    temp.add(i.getUnitName());
+                    break;
+                }
+            }
+        }
+
+        return temp;
+    }
+
+}
+public class Q2_Unit {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        try {
+            int nu = in.nextInt();
+            ArrayList<Unit> u = new ArrayList<>();
+            for (int i = 0; i < nu; i++) {
+                int unitid = in.nextInt();
+                in.nextLine();
+                String unitName = in.nextLine();
+                int budget = in.nextInt();
+                in.nextLine();
+
+                int ne = in.nextInt();
+                in.nextLine();
+                ArrayList<Employee> e = new ArrayList<>();
+                for (int j = 0; j < ne; j++) {
+                    int employeeid = in.nextInt();
+                    in.nextLine();
+                    String employeename = in.nextLine();
+                    int salary = in.nextInt();
+                    in.nextLine();
+                    e.add(new Employee(employeeid, employeename, salary));
+                }
+                u.add(new Unit(unitid, unitName, budget, e));
+
+            }
+            String inputname = in.nextLine();
+            int inputsal = in.nextInt();
+            in.nextLine();
+            Service ser = new Service();
+            try {
+                int ans1 = ser.totalSalaryByEmpName(u, inputname);
+                if (ans1 > 0) {
+                    System.out.println(ans1);
+                }
+            } catch (SalaryNegativeException e) {
+                System.out.println(e.getMessage());
+            }
+
+
+            ArrayList<String> ans2 = ser.findUnitNamesOfEmployeeBySalary(u, inputsal);
+            if (ans2.isEmpty()) {
+                System.out.println("no match");
+            } else {
+                for (String sol : ans2) {
+                    System.out.println(sol);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            in.close();
+        }
+    }
+}
+/* SAMPLE INPUT AND OUTPUT
+3
+1001
+BFSI
+1000
+2
+101
+sagar
+25000
+102
+shalini
+26000
+1002
+smi
+50000
+1
+204
+sagars
+30000
+1003
+bnts
+40004
+2
+301
+subhash
+12000
+302
+saniya
+4500
+sagar
+20000
+25000
+BFSI
+smi
+*/
