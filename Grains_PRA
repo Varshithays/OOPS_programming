@@ -1,0 +1,68 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+class Grain{
+    int id;
+    String name;
+    String state;
+    int qty;
+    public Grain(int id,String name,String state,int qty){
+        this.id=id;
+        this.name=name;
+        this.state=state;
+        this.qty=qty;
+    }
+}
+public class Solution {
+    
+    public static void findGrainsWithMax(ArrayList<Grain> ll){
+        int max=0;
+        for(Grain i:ll){
+            if(i.qty>max){
+                max=i.qty;
+            }
+        }
+        if(max>0){
+            System.out.println(max);
+        }else{
+            System.out.println("Not found");
+        }
+    }
+    public static void searchGrains(ArrayList<Grain> ll,String name){
+        Grain match= null;
+        for(Grain i:ll){
+            if(i.name.equalsIgnoreCase(name)){
+                match=i;
+            }
+        }
+        if(match!=null){
+            System.out.println(match.id);
+             System.out.println(match.name);
+             System.out.println(match.state);
+             System.out.println(match.qty);
+        
+        }else{
+            System.out.println("No Grains with matching names are found");
+        }
+    }
+    public static void main(String args[]) throws Exception {
+        
+        Scanner in = new Scanner(System.in);
+        int n= in.nextInt();
+        ArrayList<Grain> ll = new ArrayList<>();
+        for(int i=0;i<n;i++){
+            int a=in.nextInt();in.nextLine();
+            String b= in.nextLine();
+            String c=in.nextLine();
+            int d=in.nextInt();in.nextLine();
+            
+            ll.add(new Grain(a,b,c,d));
+        }
+        String name=in.nextLine();
+        findGrainsWithMax(ll);
+        searchGrains(ll,name);
+    }
+}
