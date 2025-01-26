@@ -1,0 +1,110 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+class Student{
+    int studentId;
+    String studentName;
+    int age;
+    ArrayList<Course> courses;
+    public Student(int studentId,String studentName,int age,ArrayList<Course> courses){
+        this.studentId=studentId;
+        this.studentName=studentName;
+        this.age=age;
+        this.courses=courses;
+    }
+}
+class Course{
+    int courseId;
+    String courseName;
+    double courseDuration;
+    double courseFees;
+    public Course(int courseId,String courseName,double courseDuration,double courseFees){
+        this.courseId=courseId;
+        this.courseName=courseName;
+        this.courseDuration=courseDuration;
+        this.courseFees=courseFees;
+    }
+}
+class CourseService{
+    
+    public void findFees(ArrayList<Student> st ,int thage){
+        LinkedHashMap<Student,Double> lh = new LinkedHashMap<>();
+        
+        for(Student s:st){
+            if(s.age>=thage){
+                double sum=0.0;
+            for(Course c:s.courses){    
+                   sum+=c.courseFees;
+        }
+        lh.put(s,sum);
+            }
+         
+        }
+        if(!lh.isEmpty()){
+            for(Map.Entry<Student,Double> e:lh.entrySet()){
+                Student d=e.getKey();
+            System.out.println("Student ID: "+d.studentId);
+            System.out.println("Student Name: "+d.studentName);
+            System.out.println("Total fees of all the courses this student has enrolled is: "+e.getValue());
+            }
+        }else{
+            System.out.println("No records found.");
+        }
+    }
+    public void findStudentsWithRequiredLH(ArrayList<Student> st,double requiredHours){
+        ArrayList<Student> match= new ArrayList<>();
+                    
+        for(Student i:st){
+        double total=0.0;
+            for(Course j:i.courses){
+                total+=j.courseDuration;
+            }
+            if(total>=requiredHours){
+                match.add(i);
+            }
+        }
+        if(match.isEmpty()){
+            System.out.println("No records found.");
+        }else{
+            System.out.println("Number of students who met the required learning hours is: "+match.size());
+            for(Student s:match){
+                System.out.println(s.studentName);
+            }
+        }
+    }
+}
+public class CourseManagementSystem {
+    public static void main(String args[] ) throws Exception {
+        Scanner in = new Scanner(System.in);
+        int nos=in.nextInt();in.nextLine();
+        ArrayList<Student> st=new ArrayList<>();
+        for(int i=0;i<nos;i++){
+            int sid=in.nextInt();
+            in.nextLine();
+            String sname=in.nextLine();
+            int age=in.nextInt();
+            in.nextLine();
+            int noc=in.nextInt();in.nextLine();
+            ArrayList<Course> cr= new ArrayList<>();
+            for(int j=0;j<noc;j++){
+                int cid=in.nextInt();in.nextLine();
+                String cname=in.nextLine();
+                Double cduration=in.nextDouble();in.nextLine();
+                Double cfees=in.nextDouble();in.nextLine();
+                
+                cr.add(new Course(cid, cname, cduration, cfees));
+            }
+            st.add(new Student(sid, sname, age, cr));
+        }
+        
+        int thage=in.nextInt();in.nextLine();
+        Double requiredHours=in.nextDouble();
+        CourseService cs= new CourseService();
+        cs.findFees(st, thage);
+        cs.findStudentsWithRequiredLH(st, requiredHours);
+        
+    }
+}

@@ -42,8 +42,10 @@ public class Beachp {
         }
 
         match.sort(Comparator.comparingInt(Beach::getRating));
+        System.out.println(match);
         if(match!=null){
             return match.get(0);
+
         }else{
             return null;
         }

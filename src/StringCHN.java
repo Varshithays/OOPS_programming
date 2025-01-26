@@ -6,7 +6,7 @@ public class StringCHN {
         String str = in.nextLine();
         str.toUpperCase();
         if(str.substring(0,3).equals("CHN")){
-            String st = str.substring(3);
+             String st = str.substring(3);
            StringBuilder sb = new StringBuilder(st);
             //sb.append(st);
             sb.reverse();

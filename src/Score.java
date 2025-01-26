@@ -20,7 +20,8 @@ public class Score {
 
     }
     public static boolean validateScore(int score){
-       return score>0 && score<=100;
+
+        return score>0 && score<=100;
     }
     public static List<Integer> findValidScores(int[] arr){
         List<Integer> match = new ArrayList<>();

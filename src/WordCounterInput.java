@@ -22,11 +22,13 @@ public class WordCounterInput {
         int count = 0;
 
         // Loop through the words
-        for (String word : words) {
+        for (String word : words)
+        {
             // Clean the word by removing punctuation
             String cleanedWord = word.replaceAll("[^a-zA-Z]", ""); // Remove non-letters
             // Check if the cleaned word matches the target word
-            if (cleanedWord.equals(targetWord)) {
+            if (cleanedWord.equals(targetWord))
+            {
                 count++; // Increment count
             }
         }

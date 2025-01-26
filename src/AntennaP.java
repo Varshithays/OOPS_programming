@@ -1,8 +1,10 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class AntennaP {
-    public static void main(String[] args) {
+public class AntennaP
+{
+    public static void main(String[] args)
+    {
         Scanner in = new Scanner(System.in);
         Antenna[] ar= new Antenna[4];
         for(int i=0;i<4;i++){
@@ -61,7 +63,8 @@ public class AntennaP {
 
     }
 }
-class Antenna{
+class Antenna
+{
     private int antennaId;
     private String antennaName;
     private String projectLead;

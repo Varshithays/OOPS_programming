@@ -8,7 +8,8 @@ public class FirstLetterOfEachWord {
         String s = "";
         String[] words=str.split("\\s+");
         for (int i=0;i<words.length;i++) {
-            s+=words[i].charAt(words[i].length()-1);
+            //s+=words[i].charAt(words[i].length()-1);// lats char word
+            s+=words[i].charAt(0);
         }
         System.out.println(s);
     }
